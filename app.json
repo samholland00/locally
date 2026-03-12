@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Locally",
+    "slug": "locally",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "locally",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.locally.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.locally.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-location",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Locally to scan QR codes to verify your neighbor."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
