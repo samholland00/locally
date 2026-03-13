@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import { useRouter } from 'expo-router';
 import * as Location from 'expo-location';
@@ -65,6 +65,9 @@ export default function Scan() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => router.back()} style={styles.back}>
+        <Text style={styles.backText}>← back</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>scan your neighbor's code</Text>
       <Text style={styles.subtitle}>ask a neighbor to open locally and show you their invite code</Text>
       <View style={styles.camera}>
@@ -79,7 +82,9 @@ export default function Scan() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, backgroundColor: '#fff' },
+  container: { flex: 1, padding: 24, paddingTop: 60, backgroundColor: '#fff' },
+  back: { marginBottom: 16 },
+  backText: { fontSize: 16, color: '#000' },
   title: { fontSize: 24, fontWeight: '600', marginTop: 60, marginBottom: 8 },
   subtitle: { fontSize: 14, color: '#666', marginBottom: 32, lineHeight: 20 },
   camera: { flex: 1, borderRadius: 4, overflow: 'hidden', backgroundColor: '#000' },

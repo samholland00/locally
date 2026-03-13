@@ -8,7 +8,7 @@ export default function Welcome() {
     <View style={styles.container}>
       <Text style={styles.title}>locally</Text>
       <Text style={styles.subtitle}>your neighbors. nothing else.</Text>
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/(auth)/address')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/(auth)/signup')}>
         <Text style={styles.buttonText}>get started</Text>
       </TouchableOpacity>
     </View>
