@@ -2,7 +2,7 @@
 create table public.users (
   id uuid references auth.users(id) primary key,
   display_name text not null,
-  street_name text not null, -- house number obfuscated, e.g. "Main St"
+  street_name text not null,
   geohash text not null,
   photo_url text,
   created_at timestamptz default now()
@@ -37,7 +37,7 @@ create index replies_post_id_idx on public.replies (post_id);
 -- Invite tokens
 create table public.invite_tokens (
   id uuid default gen_random_uuid() primary key,
-  created_by uuid references public.users(id) not null,
+  created_by uuid references public.users(id),
   geohash text not null,
   expires_at timestamptz not null,
   used boolean default false,
@@ -56,6 +56,25 @@ $$;
 create trigger on_reply_insert
   after insert on public.replies
   for each row execute procedure increment_reply_count();
+
+-- Trigger: auto-create public.users row on signup
+create or replace function public.handle_new_user()
+returns trigger language plpgsql security definer as $$
+begin
+  insert into public.users (id, display_name, street_name, geohash)
+  values (
+    new.id,
+    coalesce(new.raw_user_meta_data->>'display_name', 'neighbor'),
+    '',
+    coalesce(new.raw_user_meta_data->>'geohash', '')
+  );
+  return new;
+end;
+$$;
+
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user();
 
 -- Row Level Security
 alter table public.users enable row level security;
@@ -86,7 +105,7 @@ create policy "read invite tokens" on public.invite_tokens
   for select using (auth.role() = 'authenticated');
 
 create policy "insert own invite tokens" on public.invite_tokens
-  for insert with check (auth.uid() = created_by);
+  for insert with check (auth.role() = 'authenticated');
 
 create policy "update invite tokens" on public.invite_tokens
   for update using (auth.role() = 'authenticated');

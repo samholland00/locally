@@ -77,6 +77,11 @@ export default function Scan() {
           barcodeScannerSettings={{ barcodeTypes: ['qr'] }}
         />
       </View>
+      {__DEV__ && (
+        <TouchableOpacity style={styles.skip} onPress={() => router.replace('/(main)/feed')}>
+          <Text style={styles.skipText}>skip for now (dev only)</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -89,4 +94,6 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 14, color: '#666', marginBottom: 32, lineHeight: 20 },
   camera: { flex: 1, borderRadius: 4, overflow: 'hidden', backgroundColor: '#000' },
   text: { flex: 1, textAlign: 'center', padding: 24, paddingTop: 120 },
+  skip: { marginTop: 16, alignItems: 'center' },
+  skipText: { fontSize: 13, color: '#aaa', textDecorationLine: 'underline' },
 });

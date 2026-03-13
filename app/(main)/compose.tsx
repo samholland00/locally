@@ -22,8 +22,8 @@ export default function Compose() {
       if (error) throw error;
       setContent('');
       router.replace('/(main)/feed');
-    } catch {
-      Alert.alert('Error', 'Could not post. Try again.');
+    } catch (e: any) {
+      Alert.alert('Error', e?.message ?? 'Could not post. Try again.');
     } finally {
       setLoading(false);
     }
@@ -32,6 +32,9 @@ export default function Compose() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()}>
+          <Text style={styles.cancel}>cancel</Text>
+        </TouchableOpacity>
         <Text style={styles.title}>new post</Text>
         <TouchableOpacity onPress={submit} disabled={loading || !content.trim()}>
           <Text style={[styles.post, (!content.trim() || loading) && styles.postDisabled]}>post</Text>
@@ -54,6 +57,7 @@ export default function Compose() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
+  cancel: { fontSize: 16, color: '#666' },
   title: { fontSize: 18, fontWeight: '600' },
   post: { fontSize: 16, fontWeight: '600' },
   postDisabled: { color: '#aaa' },

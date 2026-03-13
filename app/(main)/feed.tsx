@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState, useCallback } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, RefreshControl } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 import { supabase } from '@/lib/supabase';
 import { Post } from '@/types';
 
@@ -15,13 +16,18 @@ export default function Feed() {
 
     const geohash: string = user.user_metadata.geohash;
 
-    const { data } = await supabase
+    let query = supabase
       .from('posts')
       .select('*, user:users(display_name, street_name, photo_url)')
-      .like('geohash', geohash.slice(0, 5) + '%')
       .order('created_at', { ascending: false })
       .limit(50);
 
+    if (geohash) {
+      query = query.like('geohash', geohash.slice(0, 5) + '%');
+    }
+
+    const { data, error } = await query;
+    console.log('feed geohash:', geohash, 'posts:', data?.length, 'error:', error?.message);
     if (data) setPosts(data as Post[]);
   }
 
@@ -31,7 +37,7 @@ export default function Feed() {
     setRefreshing(false);
   }
 
-  useEffect(() => { loadPosts(); }, []);
+  useFocusEffect(useCallback(() => { loadPosts(); }, []));
 
   return (
     <View style={styles.container}>
