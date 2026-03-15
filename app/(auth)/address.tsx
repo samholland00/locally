@@ -6,10 +6,10 @@ import { encodeGeohash } from '@/lib/geohash';
 import { supabase } from '@/lib/supabase';
 
 export default function Address() {
-  const router = useRouter();
   const [address, setAddress] = useState('');
   const [loading, setLoading] = useState(false);
   const [detecting, setDetecting] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     detectAddress();
@@ -68,6 +68,9 @@ export default function Address() {
       await supabase.auth.updateUser({
         data: { geohash, address_raw: address },
       });
+
+      const streetName = address.split(',')[0].trim();
+      await supabase.from('users').update({ street_name: streetName, geohash }).eq('id', (await supabase.auth.getUser()).data.user!.id);
 
       router.push('/(auth)/scan');
     } catch {
