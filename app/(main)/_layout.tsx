@@ -8,7 +8,7 @@ function TabLabel({ label, focused }: { label: string; focused: boolean }) {
       <Text style={{ fontSize: 13, color: focused ? '#000' : '#bbb', fontWeight: focused ? '600' : '400' }}>
         {label}
       </Text>
-      <View style={{ height: 2, width: 24, backgroundColor: focused ? '#000' : 'transparent', marginTop: 3, borderRadius: 1 }} />
+      <View style={{ height: 2, width: 24, backgroundColor: focused ? '#000' : 'transparent', marginTop: 2, borderRadius: 1 }} />
     </View>
   );
 }
@@ -17,6 +17,7 @@ const noIcon = () => null;
 
 export default function MainLayout() {
   const insets = useSafeAreaInsets();
+  const TAB_HEIGHT = 48;
 
   return (
     <Tabs
@@ -30,10 +31,15 @@ export default function MainLayout() {
           borderTopColor: '#eee',
           elevation: 0,
           shadowOpacity: 0,
-          height: 52 + insets.bottom,
+          height: TAB_HEIGHT + insets.bottom,
+          paddingTop: 0,
           paddingBottom: insets.bottom,
         },
-        tabBarItemStyle: { paddingTop: 10, paddingBottom: 0 },
+        tabBarItemStyle: {
+          height: TAB_HEIGHT,
+          justifyContent: 'center',
+          paddingVertical: 0,
+        },
         tabBarIcon: noIcon,
       }}
     >
