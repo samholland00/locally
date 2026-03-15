@@ -30,10 +30,10 @@ export default function MainLayout() {
           borderTopColor: '#eee',
           elevation: 0,
           shadowOpacity: 0,
-          height: 60 + insets.bottom,
+          height: 52 + insets.bottom,
           paddingBottom: insets.bottom,
         },
-        tabBarItemStyle: { paddingVertical: 10 },
+        tabBarItemStyle: { paddingTop: 10, paddingBottom: 0 },
         tabBarIcon: noIcon,
       }}
     >
