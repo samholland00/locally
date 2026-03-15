@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { View, Text, FlatList, TextInput, TouchableOpacity, StyleSheet, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import MapView, { Marker } from 'react-native-maps';
+import ngeohash from 'ngeohash';
 import { supabase } from '@/lib/supabase';
 import { Post, Reply } from '@/types';
 
@@ -54,6 +56,8 @@ export default function Thread() {
     }
   }
 
+  const coords = post?.geohash ? ngeohash.decode(post.geohash) : null;
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.header}>
@@ -71,6 +75,23 @@ export default function Thread() {
               <Text style={styles.street}>{post.user.street_name}</Text>
             </View>
             <Text style={styles.content}>{post.content}</Text>
+            {coords && (
+              <MapView
+                style={styles.map}
+                initialRegion={{
+                  latitude: coords.latitude,
+                  longitude: coords.longitude,
+                  latitudeDelta: 0.012,
+                  longitudeDelta: 0.012,
+                }}
+                scrollEnabled={false}
+                zoomEnabled={false}
+                pitchEnabled={false}
+                rotateEnabled={false}
+              >
+                <Marker coordinate={{ latitude: coords.latitude, longitude: coords.longitude }} />
+              </MapView>
+            )}
           </View>
         ) : null}
         renderItem={({ item }) => (
@@ -110,6 +131,7 @@ const styles = StyleSheet.create({
   name: { fontWeight: '600', fontSize: 14 },
   street: { fontSize: 13, color: '#888' },
   content: { fontSize: 15, lineHeight: 22 },
+  map: { height: 160, marginTop: 16, borderRadius: 8, overflow: 'hidden' },
   replyContent: { fontSize: 14, lineHeight: 20, color: '#333' },
   separator: { height: 1, backgroundColor: '#eee' },
   inputRow: { flexDirection: 'row', alignItems: 'center', padding: 12, borderTopWidth: 1, borderTopColor: '#eee', gap: 12 },
