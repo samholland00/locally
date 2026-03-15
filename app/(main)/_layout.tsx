@@ -15,6 +15,7 @@ export default function MainLayout() {
       <Tabs.Screen name="compose" options={{ title: 'post' }} />
       <Tabs.Screen name="invite" options={{ title: 'invite' }} />
       <Tabs.Screen name="profile" options={{ title: 'profile' }} />
+      <Tabs.Screen name="thread" options={{ href: null }} />
     </Tabs>
   );
 }
