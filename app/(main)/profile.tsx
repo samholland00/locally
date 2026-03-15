@@ -10,7 +10,7 @@ const EXPIRY_SECONDS = 60;
 export default function Profile() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  const [authUser, setAuthUser] = useState<{ email: string; first_name: string; last_name: string } | null>(null);
+  const [authUser, setAuthUser] = useState<{ email: string; first_name: string; last_name: string; address_raw: string } | null>(null);
   const [invitedCount, setInvitedCount] = useState(0);
   const [token, setToken] = useState<string | null>(null);
   const [secondsLeft, setSecondsLeft] = useState(0);
@@ -22,6 +22,7 @@ export default function Profile() {
           email: au.email ?? '',
           first_name: au.user_metadata.first_name ?? '',
           last_name: au.user_metadata.last_name ?? '',
+          address_raw: au.user_metadata.address_raw ?? '',
         });
         supabase
           .from('invite_tokens')
@@ -70,6 +71,8 @@ export default function Profile() {
     router.replace('/(auth)/welcome');
   }
 
+  const address = user?.street_name || authUser?.address_raw || '—';
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.header}>profile</Text>
@@ -88,17 +91,15 @@ export default function Profile() {
           </>
         )}
         {user && (
-          <>
-            <View style={styles.row}>
-              <Text style={styles.label}>display name</Text>
-              <Text style={styles.value}>{user.display_name}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.label}>address</Text>
-              <Text style={styles.value}>{user.street_name || '—'}</Text>
-            </View>
-          </>
+          <View style={styles.row}>
+            <Text style={styles.label}>display name</Text>
+            <Text style={styles.value}>{user.display_name}</Text>
+          </View>
         )}
+        <View style={styles.row}>
+          <Text style={styles.label}>address</Text>
+          <Text style={styles.value}>{address}</Text>
+        </View>
         <View style={styles.row}>
           <Text style={styles.label}>neighbors invited</Text>
           <Text style={styles.value}>{invitedCount}</Text>
