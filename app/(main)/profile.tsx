@@ -75,33 +75,33 @@ export default function Profile() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.header}>profile</Text>
+      <Text style={styles.header}>Profile</Text>
 
       <View style={styles.section}>
         {authUser && (
           <>
             <View style={styles.row}>
-              <Text style={styles.label}>name</Text>
+              <Text style={styles.label}>Name</Text>
               <Text style={styles.value}>{authUser.first_name} {authUser.last_name}</Text>
             </View>
             <View style={styles.row}>
-              <Text style={styles.label}>email</Text>
+              <Text style={styles.label}>Email</Text>
               <Text style={styles.value}>{authUser.email}</Text>
             </View>
           </>
         )}
         {user && (
           <View style={styles.row}>
-            <Text style={styles.label}>display name</Text>
+            <Text style={styles.label}>Display name</Text>
             <Text style={styles.value}>{user.display_name}</Text>
           </View>
         )}
         <View style={styles.row}>
-          <Text style={styles.label}>address</Text>
+          <Text style={styles.label}>Address</Text>
           <Text style={styles.value}>{address}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.label}>neighbors invited</Text>
+          <Text style={styles.label}>Neighbors invited</Text>
           <Text style={styles.value}>{invitedCount}</Text>
         </View>
       </View>
@@ -109,8 +109,8 @@ export default function Profile() {
       <View style={styles.divider} />
 
       <View style={styles.inviteSection}>
-        <Text style={styles.inviteTitle}>invite a neighbor</Text>
-        <Text style={styles.inviteSubtitle}>generate a code for a neighbor standing next to you. it expires in 60 seconds.</Text>
+        <Text style={styles.inviteTitle}>Invite a neighbor</Text>
+        <Text style={styles.inviteSubtitle}>Generate a code for a neighbor standing next to you. It expires in 60 seconds.</Text>
         {token ? (
           <View style={styles.qrWrap}>
             <QRCode value={token} size={180} />
@@ -118,7 +118,7 @@ export default function Profile() {
           </View>
         ) : (
           <TouchableOpacity style={styles.button} onPress={generateToken}>
-            <Text style={styles.buttonText}>generate code</Text>
+            <Text style={styles.buttonText}>Generate code</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -133,7 +133,7 @@ export default function Profile() {
           ])
         }
       >
-        <Text style={styles.signout}>sign out</Text>
+        <Text style={styles.signout}>Sign out</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -142,18 +142,18 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   content: { paddingBottom: 48 },
-  header: { fontSize: 20, fontWeight: '600', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
+  header: { fontSize: 20, fontFamily: 'DMSans_600SemiBold', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
   section: { padding: 16, gap: 12 },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  label: { fontSize: 13, color: '#888' },
-  value: { fontSize: 14, fontWeight: '500', flexShrink: 1, textAlign: 'right', marginLeft: 16 },
+  label: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888' },
+  value: { fontSize: 14, fontFamily: 'DMSans_500Medium', flexShrink: 1, textAlign: 'right', marginLeft: 16 },
   divider: { height: 1, backgroundColor: '#eee', marginHorizontal: 16 },
   inviteSection: { padding: 16, gap: 12, alignItems: 'center' },
-  inviteTitle: { fontSize: 16, fontWeight: '600', alignSelf: 'flex-start' },
-  inviteSubtitle: { fontSize: 13, color: '#888', lineHeight: 18, alignSelf: 'flex-start' },
+  inviteTitle: { fontSize: 16, fontFamily: 'DMSans_600SemiBold', alignSelf: 'flex-start' },
+  inviteSubtitle: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888', lineHeight: 18, alignSelf: 'flex-start' },
   qrWrap: { alignItems: 'center', gap: 12, paddingVertical: 8 },
-  timer: { fontSize: 28, fontWeight: '300', color: '#888' },
+  timer: { fontSize: 28, fontFamily: 'DMSans_300Light', color: '#888' },
   button: { backgroundColor: '#000', paddingVertical: 12, paddingHorizontal: 28, borderRadius: 4 },
-  buttonText: { color: '#fff', fontSize: 15 },
-  signout: { padding: 16, color: '#c00' },
+  buttonText: { color: '#fff', fontSize: 15, fontFamily: 'DMSans_600SemiBold' },
+  signout: { padding: 16, fontFamily: 'DMSans_400Regular', color: '#c00' },
 });

@@ -72,7 +72,7 @@ export default function Feed() {
           </TouchableOpacity>
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        ListEmptyComponent={<Text style={styles.empty}>no posts yet. be the first.</Text>}
+        ListEmptyComponent={<Text style={styles.empty}>No posts yet. Be the first.</Text>}
       />
     </View>
   );
@@ -80,14 +80,14 @@ export default function Feed() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
-  header: { fontSize: 20, fontWeight: '600', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
+  header: { fontSize: 20, fontFamily: 'DMSans_600SemiBold', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
   post: { padding: 16 },
   meta: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 6 },
-  name: { fontWeight: '600', fontSize: 14 },
-  street: { fontSize: 13, color: '#888' },
-  time: { fontSize: 12, color: '#bbb', marginLeft: 'auto' },
-  content: { fontSize: 15, lineHeight: 22 },
-  replies: { fontSize: 13, color: '#888', marginTop: 8 },
+  name: { fontFamily: 'DMSans_600SemiBold', fontSize: 14 },
+  street: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888' },
+  time: { fontSize: 12, fontFamily: 'DMSans_400Regular', color: '#bbb', marginLeft: 'auto' },
+  content: { fontSize: 15, fontFamily: 'DMSans_400Regular', lineHeight: 22 },
+  replies: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888', marginTop: 8 },
   separator: { height: 1, backgroundColor: '#eee' },
-  empty: { padding: 32, textAlign: 'center', color: '#aaa' },
+  empty: { padding: 32, textAlign: 'center', fontFamily: 'DMSans_400Regular', color: '#aaa' },
 });

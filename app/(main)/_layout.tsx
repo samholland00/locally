@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 function TabLabel({ label, focused }: { label: string; focused: boolean }) {
   return (
     <View style={{ alignItems: 'center' }}>
-      <Text style={{ fontSize: 13, color: focused ? '#000' : '#bbb', fontWeight: focused ? '600' : '400' }}>
+      <Text style={{ fontSize: 13, fontFamily: focused ? 'DMSans_600SemiBold' : 'DMSans_400Regular', color: focused ? '#000' : '#bbb' }}>
         {label}
       </Text>
       <View style={{ height: 2, width: 24, backgroundColor: focused ? '#000' : 'transparent', marginTop: 2, borderRadius: 1 }} />
@@ -47,21 +47,21 @@ export default function MainLayout() {
         name="feed"
         options={{
           tabBarIcon: noIcon,
-          tabBarLabel: ({ focused }) => <TabLabel label="feed" focused={focused} />,
+          tabBarLabel: ({ focused }) => <TabLabel label="Feed" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="compose"
         options={{
           tabBarIcon: noIcon,
-          tabBarLabel: ({ focused }) => <TabLabel label="post" focused={focused} />,
+          tabBarLabel: ({ focused }) => <TabLabel label="Post" focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
           tabBarIcon: noIcon,
-          tabBarLabel: ({ focused }) => <TabLabel label="profile" focused={focused} />,
+          tabBarLabel: ({ focused }) => <TabLabel label="Profile" focused={focused} />,
         }}
       />
       <Tabs.Screen name="thread" options={{ href: null }} />

@@ -40,10 +40,10 @@ export default function Invite() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>invite a neighbor</Text>
+      <Text style={styles.title}>Invite a neighbor</Text>
       <Text style={styles.subtitle}>
-        generate a code for a neighbor standing next to you.{' '}
-        it expires in 60 seconds.
+        Generate a code for a neighbor standing next to you.{' '}
+        It expires in 60 seconds.
       </Text>
       {token ? (
         <View style={styles.qrWrap}>
@@ -52,7 +52,7 @@ export default function Invite() {
         </View>
       ) : (
         <TouchableOpacity style={styles.button} onPress={generateToken}>
-          <Text style={styles.buttonText}>generate code</Text>
+          <Text style={styles.buttonText}>Generate code</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -61,10 +61,10 @@ export default function Invite() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24, backgroundColor: '#fff' },
-  title: { fontSize: 24, fontWeight: '600', marginBottom: 8 },
-  subtitle: { fontSize: 14, color: '#666', marginBottom: 48, textAlign: 'center', lineHeight: 20 },
+  title: { fontSize: 24, fontFamily: 'DMSans_600SemiBold', marginBottom: 8 },
+  subtitle: { fontSize: 14, fontFamily: 'DMSans_400Regular', color: '#666', marginBottom: 48, textAlign: 'center', lineHeight: 20 },
   qrWrap: { alignItems: 'center', gap: 16 },
-  timer: { fontSize: 32, fontWeight: '300', color: '#888' },
+  timer: { fontSize: 32, fontFamily: 'DMSans_300Light', color: '#888' },
   button: { backgroundColor: '#000', paddingVertical: 14, paddingHorizontal: 32, borderRadius: 4 },
-  buttonText: { color: '#fff', fontSize: 16 },
+  buttonText: { color: '#fff', fontSize: 16, fontFamily: 'DMSans_600SemiBold' },
 });

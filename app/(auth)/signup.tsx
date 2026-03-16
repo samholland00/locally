@@ -47,13 +47,13 @@ export default function Signup() {
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView contentContainerStyle={styles.inner} keyboardShouldPersistTaps="handled">
         <TouchableOpacity onPress={() => router.back()} style={styles.back}>
-          <Text style={styles.backText}>← back</Text>
+          <Text style={styles.backText}>← Back</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>create account</Text>
-        <Text style={styles.sectionLabel}>your real name — private, never shown publicly</Text>
+        <Text style={styles.title}>Create account</Text>
+        <Text style={styles.sectionLabel}>Your real name — private, never shown publicly</Text>
         <TextInput
           style={styles.input}
-          placeholder="first name"
+          placeholder="First name"
           value={firstName}
           onChangeText={setFirstName}
           autoCapitalize="words"
@@ -61,25 +61,25 @@ export default function Signup() {
         />
         <TextInput
           style={styles.input}
-          placeholder="last name"
+          placeholder="Last name"
           value={lastName}
           onChangeText={setLastName}
           autoCapitalize="words"
           returnKeyType="next"
         />
-        <Text style={styles.sectionLabel}>what neighbors see in the feed</Text>
+        <Text style={styles.sectionLabel}>What neighbors see in the feed</Text>
         <TextInput
           style={styles.input}
-          placeholder="display name"
+          placeholder="Display name"
           value={displayName}
           onChangeText={setDisplayName}
           autoCapitalize="words"
           returnKeyType="next"
         />
-        <Text style={styles.sectionLabel}>account credentials</Text>
+        <Text style={styles.sectionLabel}>Account credentials</Text>
         <TextInput
           style={styles.input}
-          placeholder="email"
+          placeholder="Email"
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none"
@@ -88,7 +88,7 @@ export default function Signup() {
         />
         <TextInput
           style={styles.input}
-          placeholder="password"
+          placeholder="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -96,10 +96,10 @@ export default function Signup() {
           onSubmitEditing={submit}
         />
         <TouchableOpacity style={[styles.button, loading && styles.buttonDisabled]} onPress={submit} disabled={loading}>
-          <Text style={styles.buttonText}>{loading ? 'creating account...' : 'continue'}</Text>
+          <Text style={styles.buttonText}>{loading ? 'Creating account...' : 'Continue'}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => router.push('/(auth)/login')} style={styles.link}>
-          <Text style={styles.linkText}>already have an account? <Text style={styles.linkUnderline}>sign in</Text></Text>
+          <Text style={styles.linkText}>Already have an account? <Text style={styles.linkUnderline}>Sign in</Text></Text>
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -109,15 +109,15 @@ export default function Signup() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   inner: { justifyContent: 'center', padding: 24, flexGrow: 1 },
-  title: { fontSize: 24, fontWeight: '600', marginBottom: 32 },
-  sectionLabel: { fontSize: 12, color: '#888', marginBottom: 8, marginTop: 16 },
-  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 4, padding: 12, fontSize: 16, marginBottom: 12 },
+  title: { fontSize: 24, fontFamily: 'DMSans_600SemiBold', marginBottom: 32 },
+  sectionLabel: { fontSize: 12, fontFamily: 'DMSans_400Regular', color: '#888', marginBottom: 8, marginTop: 16 },
+  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 4, padding: 12, fontSize: 16, fontFamily: 'DMSans_400Regular', marginBottom: 12 },
   button: { backgroundColor: '#000', paddingVertical: 14, borderRadius: 4, alignItems: 'center', marginTop: 4 },
   buttonDisabled: { opacity: 0.5 },
-  buttonText: { color: '#fff', fontSize: 16 },
+  buttonText: { color: '#fff', fontSize: 16, fontFamily: 'DMSans_600SemiBold' },
   link: { marginTop: 20, alignItems: 'center' },
-  linkText: { fontSize: 14, color: '#666' },
+  linkText: { fontSize: 14, fontFamily: 'DMSans_400Regular', color: '#666' },
   linkUnderline: { textDecorationLine: 'underline' },
   back: { marginBottom: 16 },
-  backText: { fontSize: 16, color: '#000' },
+  backText: { fontSize: 16, fontFamily: 'DMSans_400Regular', color: '#000' },
 });

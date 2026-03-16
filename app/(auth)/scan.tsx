@@ -58,7 +58,7 @@ export default function Scan() {
   if (!permission?.granted) {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>camera access needed to scan your neighbor's code</Text>
+        <Text style={styles.text}>Camera access needed to scan your neighbor's code</Text>
       </View>
     );
   }
@@ -66,10 +66,10 @@ export default function Scan() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => router.back()} style={styles.back}>
-        <Text style={styles.backText}>← back</Text>
+        <Text style={styles.backText}>← Back</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>scan your neighbor's code</Text>
-      <Text style={styles.subtitle}>ask a neighbor to open locally and show you their invite code</Text>
+      <Text style={styles.title}>Scan your neighbor's code</Text>
+      <Text style={styles.subtitle}>Ask a neighbor to open locally and show you their invite code</Text>
       <View style={styles.camera}>
         <CameraView
           style={StyleSheet.absoluteFill}
@@ -79,7 +79,7 @@ export default function Scan() {
       </View>
       {__DEV__ && (
         <TouchableOpacity style={styles.skip} onPress={() => router.replace('/(main)/feed')}>
-          <Text style={styles.skipText}>skip for now (dev only)</Text>
+          <Text style={styles.skipText}>Skip for now (dev only)</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -89,11 +89,11 @@ export default function Scan() {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 24, paddingTop: 60, backgroundColor: '#fff' },
   back: { marginBottom: 16 },
-  backText: { fontSize: 16, color: '#000' },
-  title: { fontSize: 24, fontWeight: '600', marginTop: 60, marginBottom: 8 },
-  subtitle: { fontSize: 14, color: '#666', marginBottom: 32, lineHeight: 20 },
+  backText: { fontSize: 16, fontFamily: 'DMSans_400Regular', color: '#000' },
+  title: { fontSize: 24, fontFamily: 'DMSans_600SemiBold', marginTop: 60, marginBottom: 8 },
+  subtitle: { fontSize: 14, fontFamily: 'DMSans_400Regular', color: '#666', marginBottom: 32, lineHeight: 20 },
   camera: { flex: 1, borderRadius: 4, overflow: 'hidden', backgroundColor: '#000' },
-  text: { flex: 1, textAlign: 'center', padding: 24, paddingTop: 120 },
+  text: { flex: 1, textAlign: 'center', padding: 24, paddingTop: 120, fontFamily: 'DMSans_400Regular' },
   skip: { marginTop: 16, alignItems: 'center' },
-  skipText: { fontSize: 13, color: '#aaa', textDecorationLine: 'underline' },
+  skipText: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#aaa', textDecorationLine: 'underline' },
 });

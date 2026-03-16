@@ -83,11 +83,11 @@ export default function Address() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => router.back()} style={styles.back}>
-        <Text style={styles.backText}>← back</Text>
+        <Text style={styles.backText}>← Back</Text>
       </TouchableOpacity>
-      <Text style={styles.title}>your address</Text>
-      <Text style={styles.subtitle}>used only to place you in your neighborhood. never shown publicly.</Text>
-      {detecting && <Text style={styles.detecting}>finding your location, this might take a moment...</Text>}
+      <Text style={styles.title}>Your address</Text>
+      <Text style={styles.subtitle}>Used only to place you in your neighborhood. Never shown publicly.</Text>
+      {detecting && <Text style={styles.detecting}>Finding your location, this might take a moment...</Text>}
       <TextInput
         style={styles.input}
         placeholder={detecting ? '' : '123 Main St, City, State'}
@@ -99,7 +99,7 @@ export default function Address() {
         editable={!detecting}
       />
       <TouchableOpacity style={[styles.button, (loading || detecting) && styles.buttonDisabled]} onPress={verify} disabled={loading || detecting}>
-        <Text style={styles.buttonText}>{loading ? 'verifying...' : 'continue'}</Text>
+        <Text style={styles.buttonText}>{loading ? 'Verifying...' : 'Continue'}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -108,12 +108,12 @@ export default function Address() {
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: 'center', padding: 24, paddingTop: 60, backgroundColor: '#fff' },
   back: { position: 'absolute', top: 60, left: 24 },
-  backText: { fontSize: 16, color: '#000' },
-  title: { fontSize: 24, fontWeight: '600', marginBottom: 8 },
-  subtitle: { fontSize: 14, color: '#666', marginBottom: 32, lineHeight: 20 },
-  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 4, padding: 12, fontSize: 16, marginBottom: 16 },
-  detecting: { fontSize: 13, color: '#888', marginBottom: 8, fontStyle: 'italic' },
+  backText: { fontSize: 16, fontFamily: 'DMSans_400Regular', color: '#000' },
+  title: { fontSize: 24, fontFamily: 'DMSans_600SemiBold', marginBottom: 8 },
+  subtitle: { fontSize: 14, fontFamily: 'DMSans_400Regular', color: '#666', marginBottom: 32, lineHeight: 20 },
+  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 4, padding: 12, fontSize: 16, fontFamily: 'DMSans_400Regular', marginBottom: 16 },
+  detecting: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888', marginBottom: 8, fontStyle: 'italic' },
   button: { backgroundColor: '#000', paddingVertical: 14, borderRadius: 4, alignItems: 'center' },
   buttonDisabled: { opacity: 0.5 },
-  buttonText: { color: '#fff', fontSize: 16 },
+  buttonText: { color: '#fff', fontSize: 16, fontFamily: 'DMSans_600SemiBold' },
 });

@@ -33,16 +33,16 @@ export default function Compose() {
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()}>
-          <Text style={styles.cancel}>cancel</Text>
+          <Text style={styles.cancel}>Cancel</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>new post</Text>
+        <Text style={styles.title}>New post</Text>
         <TouchableOpacity onPress={submit} disabled={loading || !content.trim()}>
-          <Text style={[styles.post, (!content.trim() || loading) && styles.postDisabled]}>post</Text>
+          <Text style={[styles.post, (!content.trim() || loading) && styles.postDisabled]}>Post</Text>
         </TouchableOpacity>
       </View>
       <TextInput
         style={styles.input}
-        placeholder="what's going on in the neighborhood?"
+        placeholder="What's going on in the neighborhood?"
         value={content}
         onChangeText={setContent}
         multiline
@@ -57,10 +57,10 @@ export default function Compose() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
-  cancel: { fontSize: 16, color: '#666' },
-  title: { fontSize: 18, fontWeight: '600' },
-  post: { fontSize: 16, fontWeight: '600' },
+  cancel: { fontSize: 16, fontFamily: 'DMSans_400Regular', color: '#666' },
+  title: { fontSize: 18, fontFamily: 'DMSans_600SemiBold' },
+  post: { fontSize: 16, fontFamily: 'DMSans_600SemiBold' },
   postDisabled: { color: '#aaa' },
-  input: { flex: 1, padding: 16, fontSize: 16, lineHeight: 24, textAlignVertical: 'top' },
-  count: { padding: 16, textAlign: 'right', color: '#aaa', fontSize: 12 },
+  input: { flex: 1, padding: 16, fontSize: 16, fontFamily: 'DMSans_400Regular', lineHeight: 24, textAlignVertical: 'top' },
+  count: { padding: 16, textAlign: 'right', fontFamily: 'DMSans_400Regular', color: '#aaa', fontSize: 12 },
 });
