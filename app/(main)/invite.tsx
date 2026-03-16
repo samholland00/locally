@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import { supabase } from '@/lib/supabase';
 
-const EXPIRY_SECONDS = 60;
+const EXPIRY_SECONDS = 30;
 
 export default function Invite() {
   const [token, setToken] = useState<string | null>(null);
@@ -43,7 +43,7 @@ export default function Invite() {
       <Text style={styles.title}>Invite a neighbor</Text>
       <Text style={styles.subtitle}>
         Generate a code for a neighbor standing next to you.{' '}
-        It expires in 60 seconds.
+        It expires in 30 seconds.
       </Text>
       {token ? (
         <View style={styles.qrWrap}>

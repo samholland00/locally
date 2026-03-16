@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { supabase } from '@/lib/supabase';
 import { User } from '@/types';
 
-const EXPIRY_SECONDS = 60;
+const EXPIRY_SECONDS = 30;
 
 export default function Profile() {
   const router = useRouter();
@@ -110,7 +110,7 @@ export default function Profile() {
 
       <View style={styles.inviteSection}>
         <Text style={styles.inviteTitle}>Invite a neighbor</Text>
-        <Text style={styles.inviteSubtitle}>Generate a code for a neighbor standing next to you. It expires in 60 seconds.</Text>
+        <Text style={styles.inviteSubtitle}>Generate a code for a neighbor standing next to you. It expires in 30 seconds.</Text>
         {token ? (
           <View style={styles.qrWrap}>
             <QRCode value={token} size={180} />
