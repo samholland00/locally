@@ -16,6 +16,7 @@ create table public.posts (
   user_id uuid references public.users(id) not null,
   content text not null check (char_length(content) <= 500),
   geohash text not null,
+  category text not null default 'general' check (category in ('general', 'gifts', 'for_sale', 'help_wanted', 'events')),
   reply_count int default 0,
   created_at timestamptz default now()
 );

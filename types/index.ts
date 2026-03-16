@@ -7,12 +7,15 @@ export type User = {
   created_at: string;
 };
 
+export type PostCategory = 'general' | 'gifts' | 'for_sale' | 'help_wanted' | 'events';
+
 export type Post = {
   id: string;
   user_id: string;
   user: Pick<User, 'display_name' | 'street_name' | 'photo_url'>;
   content: string;
   geohash: string;
+  category: PostCategory;
   created_at: string;
   reply_count: number;
 };
