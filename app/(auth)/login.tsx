@@ -30,12 +30,12 @@ export default function Login() {
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <View style={styles.inner}>
         <TouchableOpacity onPress={() => router.back()} style={styles.back}>
-          <Text style={styles.backText}>← back</Text>
+          <Text style={styles.backText}>← Back</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>sign in</Text>
+        <Text style={styles.title}>Sign in</Text>
         <TextInput
           style={styles.input}
-          placeholder="email"
+          placeholder="Email"
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none"
@@ -44,7 +44,7 @@ export default function Login() {
         />
         <TextInput
           style={styles.input}
-          placeholder="password"
+          placeholder="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -52,10 +52,10 @@ export default function Login() {
           onSubmitEditing={submit}
         />
         <TouchableOpacity style={[styles.button, loading && styles.buttonDisabled]} onPress={submit} disabled={loading}>
-          <Text style={styles.buttonText}>{loading ? 'signing in...' : 'sign in'}</Text>
+          <Text style={styles.buttonText}>{loading ? 'Signing in...' : 'Sign in'}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => router.push('/(auth)/signup')} style={styles.link}>
-          <Text style={styles.linkText}>no account? <Text style={styles.linkUnderline}>sign up</Text></Text>
+          <Text style={styles.linkText}>No account? <Text style={styles.linkUnderline}>Sign up</Text></Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -65,14 +65,14 @@ export default function Login() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
   inner: { flex: 1, justifyContent: 'center', padding: 24 },
-  title: { fontSize: 24, fontWeight: '600', marginBottom: 32 },
-  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 4, padding: 12, fontSize: 16, marginBottom: 12 },
+  title: { fontSize: 24, fontFamily: 'DMSans_600SemiBold', marginBottom: 32 },
+  input: { borderWidth: 1, borderColor: '#ddd', borderRadius: 4, padding: 12, fontSize: 16, fontFamily: 'DMSans_400Regular', marginBottom: 12 },
   button: { backgroundColor: '#000', paddingVertical: 14, borderRadius: 4, alignItems: 'center', marginTop: 4 },
   buttonDisabled: { opacity: 0.5 },
-  buttonText: { color: '#fff', fontSize: 16 },
+  buttonText: { color: '#fff', fontSize: 16, fontFamily: 'DMSans_600SemiBold' },
   link: { marginTop: 20, alignItems: 'center' },
-  linkText: { fontSize: 14, color: '#666' },
+  linkText: { fontSize: 14, fontFamily: 'DMSans_400Regular', color: '#666' },
   linkUnderline: { textDecorationLine: 'underline' },
   back: { marginBottom: 24 },
-  backText: { fontSize: 16, color: '#000' },
+  backText: { fontSize: 16, fontFamily: 'DMSans_400Regular', color: '#000' },
 });

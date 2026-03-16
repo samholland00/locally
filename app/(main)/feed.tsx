@@ -5,6 +5,14 @@ import { useFocusEffect } from '@react-navigation/native';
 import { supabase } from '@/lib/supabase';
 import { Post } from '@/types';
 
+function timeAgo(dateStr: string): string {
+  const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000);
+  if (diff < 60) return 'just now';
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return `${Math.floor(diff / 86400)}d ago`;
+}
+
 export default function Feed() {
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -26,8 +34,7 @@ export default function Feed() {
       query = query.like('geohash', geohash.slice(0, 5) + '%');
     }
 
-    const { data, error } = await query;
-    console.log('feed geohash:', geohash, 'posts:', data?.length, 'error:', error?.message);
+    const { data } = await query;
     if (data) setPosts(data as Post[]);
   }
 
@@ -54,6 +61,7 @@ export default function Feed() {
             <View style={styles.meta}>
               <Text style={styles.name}>{item.user.display_name}</Text>
               <Text style={styles.street}>{item.user.street_name}</Text>
+              <Text style={styles.time}>{timeAgo(item.created_at)}</Text>
             </View>
             <Text style={styles.content}>{item.content}</Text>
             {item.reply_count > 0 && (
@@ -64,7 +72,7 @@ export default function Feed() {
           </TouchableOpacity>
         )}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        ListEmptyComponent={<Text style={styles.empty}>no posts yet. be the first.</Text>}
+        ListEmptyComponent={<Text style={styles.empty}>No posts yet. Be the first.</Text>}
       />
     </View>
   );
@@ -72,13 +80,14 @@ export default function Feed() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
-  header: { fontSize: 20, fontWeight: '600', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
+  header: { fontSize: 20, fontFamily: 'DMSans_600SemiBold', padding: 16, paddingTop: 60, borderBottomWidth: 1, borderBottomColor: '#eee' },
   post: { padding: 16 },
   meta: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 6 },
-  name: { fontWeight: '600', fontSize: 14 },
-  street: { fontSize: 13, color: '#888' },
-  content: { fontSize: 15, lineHeight: 22 },
-  replies: { fontSize: 13, color: '#888', marginTop: 8 },
+  name: { fontFamily: 'DMSans_600SemiBold', fontSize: 14 },
+  street: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888' },
+  time: { fontSize: 12, fontFamily: 'DMSans_400Regular', color: '#bbb', marginLeft: 'auto' },
+  content: { fontSize: 15, fontFamily: 'DMSans_400Regular', lineHeight: 22 },
+  replies: { fontSize: 13, fontFamily: 'DMSans_400Regular', color: '#888', marginTop: 8 },
   separator: { height: 1, backgroundColor: '#eee' },
-  empty: { padding: 32, textAlign: 'center', color: '#aaa' },
+  empty: { padding: 32, textAlign: 'center', fontFamily: 'DMSans_400Regular', color: '#aaa' },
 });
